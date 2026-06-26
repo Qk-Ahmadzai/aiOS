@@ -1,203 +1,459 @@
-# aiOS
-An automated, bare-metal AI operating system script. Features optimized memory kernel parameters, headless CUDA/ROCm provisioning, and auto-orchestrated inference runtimes.
-## ⚡ Deployment Playbook
+````markdown
+# 🚀 aiOS – The Open-Source AI Operating System
 
-### 1. Prerequisites
-Start with a **fresh, minimal installation** of Ubuntu Server (Minimal option chosen during installation) or Rocky Linux Minimal. Ensure the machine has an active network connection.
+> **A lightweight, AI-first Linux platform built exclusively for local AI inference.**
 
-### 2. Execution Setup
-Clone this repository directly onto your target system, assign execution bit flags, and trigger the initialization script:
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Status](https://img.shields.io/badge/status-Pre--Alpha-orange)
+![Open Source](https://img.shields.io/badge/Open%20Source-❤-success)
+![Contributions](https://img.shields.io/badge/Contributions-Welcome-brightgreen)
+
+---
+
+## 🌍 Vision
+
+Artificial Intelligence is becoming the next computing platform, yet today's operating systems are still designed primarily for desktops, laptops, and servers.
+
+**aiOS** reimagines Linux from an AI-first perspective.
+
+Instead of treating AI as just another application, aiOS is designed with one purpose:
+
+> **Deliver the fastest, simplest, and most efficient platform for running local AI models.**
+
+Whether you're hosting LLMs, building AI agents, running multimodal models, or deploying private inference servers, aiOS aims to provide an operating system built specifically for those workloads.
+
+---
+
+# Why aiOS?
+
+Traditional Linux distributions include hundreds of packages and services that consume resources despite having nothing to do with AI inference.
+
+Desktop environments, printing services, audio stacks, GUI frameworks, and unnecessary background daemons all increase memory usage and system complexity.
+
+aiOS removes this overhead.
+
+The goal is to dedicate as much of the system as practical to AI workloads while providing a streamlined experience for developers and operators.
+
+---
+
+# Core Principles
+
+- 🤖 AI First
+- ⚡ Performance Focused
+- 🔒 Privacy by Default
+- 🪶 Lightweight
+- 🧩 Modular Architecture
+- 🌐 API Driven
+- 🐳 Container Native
+- ❤️ Community Built
+- 📖 Open Source Forever
+
+---
+
+# Project Goals
+
+Our mission is to build the best open platform for local AI.
+
+Objectives include:
+
+- Maximize GPU utilization
+- Reduce system overhead
+- Simplify AI deployment
+- Eliminate dependency issues
+- Support multiple inference engines
+- Provide a beautiful management interface
+- Enable one-command AI deployment
+- Support home labs, developers, startups, and enterprises
+
+---
+
+# Planned Features
+
+## AI Runtime Support
+
+- Ollama
+- llama.cpp
+- vLLM
+- SGLang
+- TensorRT-LLM
+- ComfyUI
+- Whisper
+- Stable Diffusion
+- Future inference engines
+
+---
+
+## GPU Support
+
+- NVIDIA CUDA
+- AMD ROCm
+- Intel oneAPI (planned)
+
+Automatic hardware detection.
+
+Automatic runtime installation.
+
+Automatic optimization.
+
+---
+
+## Web Dashboard
+
+A modern web dashboard providing:
+
+- Live GPU monitoring
+- VRAM usage
+- RAM utilization
+- CPU usage
+- Running models
+- Installed models
+- Downloads
+- Queue management
+- Token generation speed
+- Logs
+- System updates
+- User management
+- API key management
+
+---
+
+## AI Model Manager
+
+Install models with a single command.
+
+Example:
 
 ```bash
-git clone https://github.com
-cd YOUR_REPO_NAME
-chmod +x build-aios.sh
-sudo ./build-aios.sh
+aios install llama3
+aios install qwen3
+aios install deepseek
+````
+
+Automatic features:
+
+* Download models
+* Resume downloads
+* Verify integrity
+* Select optimal quantization
+* Manage storage
+* Update models
+
+---
+
+## Intelligent AI Router
+
+Automatically choose the most appropriate model based on the request.
+
+Examples:
+
+* Coding → Code model
+* Mathematics → Reasoning model
+* Vision → Vision model
+* Speech → Whisper
+* General Chat → Llama
+
+---
+
+## AI Scheduler
+
+Efficient scheduling for:
+
+* Multiple users
+* Multiple GPUs
+* Job queues
+* Priority execution
+* Concurrent inference
+* GPU allocation
+
+---
+
+## Storage Manager
+
+Automatic management of:
+
+* Model cache
+* SSD storage
+* RAM cache
+* Model snapshots
+* Backups
+* Restore points
+
+---
+
+## Monitoring
+
+Integrated monitoring stack.
+
+Metrics include:
+
+* GPU temperature
+* Power consumption
+* Tokens per second
+* GPU utilization
+* CPU utilization
+* Memory usage
+* VRAM usage
+* Disk usage
+* Network throughput
+
+---
+
+## Security
+
+Built with security in mind.
+
+Features include:
+
+* Firewall configuration
+* HTTPS
+* SSH hardening
+* API authentication
+* Role-based access control
+* Secure secret storage
+* Audit logging
+
+---
+
+# Planned Architecture
+
+```
+                 Web Dashboard
+                       │
+          ┌────────────┴────────────┐
+          │                         │
+     REST API                  CLI (aiosctl)
+          │
+          ▼
+      Core Daemon
+          │
+ ┌────────┼────────┐
+ │        │        │
+Scheduler Router Model Manager
+ │        │        │
+ └────────┼────────┘
+          │
+Inference Runtime Layer
+ │
+ ├── Ollama
+ ├── llama.cpp
+ ├── vLLM
+ ├── SGLang
+ ├── TensorRT
+ │
+ └───────────────
+          │
+GPU Resource Manager
+          │
+CUDA • ROCm • oneAPI
+          │
+Linux Kernel
 ```
 
 ---
 
-## 📜 Automated Deployment Script (`build-aios.sh`)
+# Project Structure
 
-This script handles system modernization, resource tuning, graphics backend driver provisioning, and automatic container orchestrations.
+```
+aiOS/
 
-```bash
-#!/usr/bin/env bash
-# ==============================================================================
-# TITLE: build-aios.sh
-# DESCRIPTION: Automated Headless Optimization Engine for Local AI
-# ==============================================================================
-set -euo pipefail
-
-# --- CONFIGURATION MATRIX ---
-TARGET_DISTRO="ubuntu-minimal"  # Options: ubuntu-minimal, rocky-minimal
-ACCELERATOR_TYPE="nvidia"       # Options: nvidia, amd, cpu-only
-INFERENCE_BACKEND="ollama"       # Options: ollama, vllm, both
-API_PORT="11434"
-DATA_DIR="/opt/aios/models"
-
-echo "🚀 Initializing aiOS Deployment Framework..."
-
-# --- PHASE 1: ENVIRONMENT SANITIZATION ---
-echo "🧹 Purging non-essential desktop packages and background daemons..."
-if [ "\$TARGET_DISTRO" = "ubuntu-minimal" ]; then
-    export DEBIAN_FRONTEND=noninteractive
-    apt-get update -y
-    apt-get purge -y ubuntu-desktop* cups* avahi-daemon* modemmanager popularity-contest gdm3 sddm lightdm
-    apt-get autoremove -y && apt-get clean
-elif [ "\$TARGET_DISTRO" = "rocky-minimal" ]; then
-    dnf groupremove -y "Graphical Server" "Server with GUI" || true
-    dnf remove -y cups avahi || true
-    dnf autoremove -y && dnf clean all
-fi
-
-# --- PHASE 2: KERNEL & MEMORY TUNING ---
-echo "🧠 Injecting memory caching and low-latency kernel optimizations..."
-cat <<EOF > /etc/sysctl.d/99-aios-performance.conf
-vm.swappiness=1
-vm.max_map_count=262144
-net.core.rmem_max=16777216
-net.core.wmem_max=16777216
-fs.file-max=2097152
-EOF
-sysctl --system
-
-# --- PHASE 3: COMPUTE LAYER PROVISIONING ---
-echo "🏎️ Installing headless hardware acceleration drivers..."
-if [ "\$ACCELERATOR_TYPE" = "nvidia" ]; then
-    if [ "\$TARGET_DISTRO" = "ubuntu-minimal" ]; then
-        apt-get install -y software-properties-common
-        add-apt-repository ppa:graphics-drivers/ppa -y
-        apt-get update -y
-        apt-get install -y nvidia-headless-550-server nvidia-utils-550-server
-    fi
-    nvidia-smi --persistence-mode=1
-fi
-
-# --- PHASE 4: CONTAINER CONTAINERIZATION & RUNTIMES ---
-echo "🐳 Deploying isolated container stack engines..."
-if [ "\$TARGET_DISTRO" = "ubuntu-minimal" ]; then
-    curl -fsSL https://docker.com -o get-docker.sh && sh get-docker.sh
-    if [ "\$ACCELERATOR_TYPE" = "nvidia" ]; then
-        apt-get install -y nvidia-container-toolkit
-        systemctl restart docker
-    fi
-fi
-
-mkdir -p "\$DATA_DIR"
-
-# Write Docker Compose Configurations
-cat <<EOF > docker-compose.yml
-version: '3.8'
-services:
-  aios-core:
-    image: ollama/ollama:latest
-    container_name: aios-ollama-core
-    restart: always
-    volumes:
-      - \${DATA_DIR}:/root/.ollama
-    ports:
-      - "\({API_PORT}:\){API_PORT}"
-EOF
-
-if [ "\$ACCELERATOR_TYPE" = "nvidia" ]; then
-cat <<EOF >> docker-compose.yml
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: all
-              capabilities: [gpu]
-EOF
-fi
-
-docker compose up -d
-
-# --- PHASE 5: FIREWALL HARDENING & SYSTEM VALIDATION ---
-echo "🛡️ Locking down internal packet firewalls..."
-if command -v ufw &> /dev/null; then
-    ufw default deny incoming
-    ufw default allow outgoing
-    ufw allow ssh
-    ufw allow "\$API_PORT"/tcp
-    ufw --force enable
-fi
-
-echo "✅ aiOS Installation Engine Completed Successfully!"
+installer/
+kernel/
+dashboard/
+api/
+daemon/
+scheduler/
+runtime/
+drivers/
+plugins/
+cli/
+benchmark/
+storage/
+monitoring/
+scripts/
+docs/
+tests/
+.github/
 ```
 
 ---
 
-## ⚙️ Configuration Tuning Specifications
+# Roadmap
 
-Before initiating the run, you can tune the deployment configuration matrix located directly inside the head parameters of the `build-aios.sh` script to suit your physical environment layout:
+## Phase 1
 
-| Configuration Parameter | Target Matrix | Description / Deployment Context |
-| :--- | :--- | :--- |
-| `TARGET_DISTRO` | `ubuntu-minimal`, `rocky-minimal` | Controls the internal OS package manager pipeline (APT vs DNF). |
-| `ACCELERATOR_TYPE` | `nvidia`, `amd`, `cpu-only` | Instructs the driver block solver which hardware toolkit to link. |
-| `INFERENCE_BACKEND`| `ollama`, `vllm`, `both` | Configures the background runtime execution stack mapping. |
-| `API_PORT` | `11434`, `8080` | Specifies the firewall rules layer hole allocation mapping. |
-
----
-
-## 📈 System Tuning Settings (`/etc/sysctl.d/99-aios-performance.conf`)
-
-`aiOS` overrides standard system parameters to stabilize large tensor allocations during context model swaps:
-
-```ini
-# Prevent memory swap performance degradations
-vm.swappiness=1
-
-# Maximize file descriptor capacities for deeply nested models
-vm.max_map_count=262144
-
-# Expand read and write memory parameters for rapid local network communication
-net.core.rmem_max=16777216
-net.core.wmem_max=16777216
-```
+* Ubuntu Server installer
+* CLI
+* Docker integration
+* GPU detection
+* Ollama support
+* Basic dashboard
 
 ---
 
-## 🛡️ Telemetry & Diagnostic Validation Checks
+## Phase 2
 
-Verify your headless system is communicating directly with the hardware acceleration assets without drawing graphical resource leaks:
-
-### Check Accelerator Engine Status
-```bash
-nvidia-smi
-# OR for AMD configurations
-rocm-smi
-```
-
-### Validate API Token Generation Pipeline
-```bash
-# Query the live container endpoint across the private local network
-curl -X POST http://localhost:11434/api/generate -d '{
-  "model": "llama3",
-  "prompt": "Confirm low latency bare metal response."
-}'
-```
-
-### Inspect Compute Container Infrastructure Log Stacks
-```bash
-docker compose logs -f aios-ollama-core
-```
+* Runtime manager
+* AI router
+* Model marketplace
+* GPU scheduler
+* Performance dashboard
 
 ---
 
-## 🤝 Contribution Framework
+## Phase 3
 
-We appreciate community improvements for trimming memory overhead, fine-tuning hardware acceleration, and building lightweight runtimes. 
-
-1. Fork this project repository.
-2. Initialize an isolated feature branch (`git checkout -b feature/OptimizedCore`).
-3. Commit adjustments with technical clarity (`git commit -m 'Tune THP configurations'`).
-4. Push clean updates up to your branch origin (`git push origin feature/OptimizedCore`).
-5. Open a formal Pull Request for system review.
+* Cluster support
+* Multi-node deployment
+* Enterprise features
+* High availability
+* Distributed inference
 
 ---
 
-## 📄 License
-This architecture framework is distributed completely open-source under the terms specified within the **MIT License**. For complete documentation overview profiles, see the included `LICENSE` file.
+## Phase 4
+
+* Custom ISO installer
+* Immutable operating system
+* Automatic updates
+* AI package manager
+* Official aiOS release
+
+---
+
+# Open Source
+
+aiOS is and will remain an open-source project.
+
+We believe the future of local AI infrastructure should be transparent, community-driven, and accessible to everyone.
+
+We welcome contributions from:
+
+* Linux developers
+* AI engineers
+* Backend developers
+* Frontend developers
+* DevOps engineers
+* Security researchers
+* UI/UX designers
+* Documentation writers
+* Technical writers
+* Students
+* Open-source enthusiasts
+
+Every contribution, no matter how small, helps move the project forward.
+
+---
+
+# How to Contribute
+
+We welcome all contributions.
+
+You can help by:
+
+* Reporting bugs
+* Suggesting features
+* Improving documentation
+* Fixing issues
+* Writing tests
+* Improving performance
+* Building new plugins
+* Reviewing pull requests
+* Helping other contributors
+
+Please check the issue tracker before starting work on a new feature.
+
+---
+
+# Development Philosophy
+
+* Keep it lightweight.
+* Keep it modular.
+* Prefer simplicity over complexity.
+* Optimize for reliability.
+* Write maintainable code.
+* Document everything.
+* Benchmark before optimizing.
+* Security is never optional.
+
+---
+
+# Technology Stack (Planned)
+
+Backend
+
+* Rust
+* Go
+* Python
+
+Frontend
+
+* React
+* TypeScript
+* Tailwind CSS
+
+Infrastructure
+
+* Docker
+* GitHub Actions
+
+Monitoring
+
+* Prometheus
+* Grafana
+
+Database
+
+* PostgreSQL
+* Redis
+
+---
+
+# License
+
+This project is licensed under the MIT License.
+
+See the LICENSE file for details.
+
+---
+
+# Community
+
+GitHub Discussions will be used for:
+
+* Ideas
+* Questions
+* RFCs
+* Community feedback
+
+Please be respectful, constructive, and welcoming.
+
+---
+
+# Status
+
+🚧 Pre-Alpha
+
+This project is currently in its early design phase.
+
+Contributors are welcome to help shape the architecture, roadmap, and implementation.
+
+---
+
+# Our Goal
+
+Build the operating system we wish existed for local AI.
+
+A fast.
+
+Minimal.
+
+Reliable.
+
+Open.
+
+Community-driven platform designed from the ground up for AI inference.
+
+If this vision excites you, we'd love to have you join us.
+
+```
+```
