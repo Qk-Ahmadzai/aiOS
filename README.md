@@ -1,16 +1,19 @@
 # 🚀 aiOS – The Open-Source AI Operating System
 
+**A lightweight, AI-first Linux platform built exclusively for local AI inference.**
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Status](https://img.shields.io/badge/status-Pre--Alpha-orange)
+![Open Source](https://img.shields.io/badge/Open%20Source-❤-success)
+![Contributions](https://img.shields.io/badge/Contributions-Welcome-brightgreen)
+
+
 ![aiOS](/aiOS.png)
 
 ![aiOS Running](/aiOS-RunningLocally.png)
 *Figure 1: aiOS running locally serving you network*
 
-**A lightweight, AI-first Linux platform built exclusively for local AI inference.**
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Status](https://img.shields.io/badge/status-Pre--Alpha-orange)
-![Open Source](https://img.shields.io/badge/Open%20Source-❤-success)
-![Contributions](https://img.shields.io/badge/Contributions-Welcome-brightgreen)
+
 
 ---
 
