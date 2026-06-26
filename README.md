@@ -1,5 +1,8 @@
 # 🚀 aiOS – The Open-Source AI Operating System
 
+![aiOS](/aiOS.png)
+
+
 **A lightweight, AI-first Linux platform built exclusively for local AI inference.**
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
@@ -16,6 +19,16 @@ Artificial Intelligence is becoming the next computing platform, yet today's ope
 **aiOS** reimagines Linux from an AI-first perspective.
 
 Instead of treating AI as just another application, aiOS is designed with one purpose:
+
+![aiOS Project Vision & Architecture High-Level](/aiOS%20Project%20Vision%20&%20Architecture%20High-Level.png)
+
+*Figure 1: aiOS Project Vision & Architecture Hight-Level*
+
+
+![aiOS Project Vision & Architecture](/aiOS%20Project%20Vision%20&%20Architecture.png)
+
+*Figure 2: aiOS Project Vision & Architecture*
+
 
 **Deliver the fastest, simplest, and most efficient platform for running local AI models.**
 
