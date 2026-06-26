@@ -27,12 +27,7 @@ Instead of treating AI as just another application, aiOS is designed with one pu
 
 ![aiOS Project Vision & Architecture High-Level](/aiOS%20Project%20Vision%20&%20Architecture%20High-Level.png)
 
-*Figure 1: aiOS Project Vision & Architecture Hight-Level*
-
-
-![aiOS Project Vision & Architecture](/aiOS%20Project%20Vision%20&%20Architecture.png)
-
-*Figure 2: aiOS Project Vision & Architecture*
+*Figure 2: aiOS Project Vision & Architecture Hight-Level*
 
 
 **Deliver the fastest, simplest, and most efficient platform for running local AI models.**
@@ -233,38 +228,9 @@ Features include:
 
 # Planned Architecture
 
-```
-                 Web Dashboard
-                       │
-          ┌────────────┴────────────┐
-          │                         │
-     REST API                  CLI (aiosctl)
-          │
-          ▼
-      Core Daemon
-          │
- ┌────────┼────────┐
- │        │        │
-Scheduler Router Model Manager
- │        │        │
- └────────┼────────┘
-          │
-Inference Runtime Layer
- │
- ├── Ollama
- ├── llama.cpp
- ├── vLLM
- ├── SGLang
- ├── TensorRT
- │
- └───────────────
-          │
-GPU Resource Manager
-          │
-CUDA • ROCm • oneAPI
-          │
-Linux Kernel
-```
+![aiOS Project Vision & Architecture](/aiOS%20Project%20Vision%20&%20Architecture.png)
+
+*Figure 3: aiOS Project Vision & Architecture*
 
 ---
 
