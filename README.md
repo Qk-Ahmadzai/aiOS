@@ -2,6 +2,8 @@
 
 ![aiOS](/aiOS.png)
 
+![aiOS Running](/aiOS-RunningLocally.png)
+*Figure 1: aiOS running locally serving you network*
 
 **A lightweight, AI-first Linux platform built exclusively for local AI inference.**
 
