@@ -127,7 +127,7 @@ Example:
 aios install llama3
 aios install qwen3
 aios install deepseek
-````
+```
 
 Automatic features:
 
