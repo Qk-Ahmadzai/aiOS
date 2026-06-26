@@ -1,7 +1,7 @@
 ````markdown
 # 🚀 aiOS – The Open-Source AI Operating System
 
-> **A lightweight, AI-first Linux platform built exclusively for local AI inference.**
+**A lightweight, AI-first Linux platform built exclusively for local AI inference.**
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Status](https://img.shields.io/badge/status-Pre--Alpha-orange)
@@ -18,7 +18,7 @@ Artificial Intelligence is becoming the next computing platform, yet today's ope
 
 Instead of treating AI as just another application, aiOS is designed with one purpose:
 
-> **Deliver the fastest, simplest, and most efficient platform for running local AI models.**
+**Deliver the fastest, simplest, and most efficient platform for running local AI models.**
 
 Whether you're hosting LLMs, building AI agents, running multimodal models, or deploying private inference servers, aiOS aims to provide an operating system built specifically for those workloads.
 
