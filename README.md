@@ -1,6 +1,6 @@
 # aiOS
 
-> The AI Appliance Operating System
+## The AI Appliance Operating System
 
 Turn any computer with a GPU into a private AI server for your entire network.
 Version: Draft 0.2
@@ -8,7 +8,8 @@ Status: Community Proposal - Pre-Alpha
 License: MIT
 Project Type: Open Source
 
----
+![aiOS](/aiOS.png)
+
 
 ## What is aiOS?
 aiOS is a lightweight, purpose-built Linux distribution that transforms commodity hardware into a dedicated local AI inference appliance.
